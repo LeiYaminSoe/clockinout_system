@@ -26,7 +26,7 @@
                       <%= clock_event.event_type == 1 ? "School" : clock_event.event_type == 2 ? "Lunch" : clock_event.event_type == 3 ? "Personal" : "" %>
                     </td>
                     <td class="cus-col-big">
-                      <%= clock_event.event_action == 1 ? "Arrival" : clock_event.event_action == 2 ? "Departure" : "" %>
+                      <%= clock_event.event_action == 1 ? "Clock-In" : clock_event.event_action == 2 ? "Clock-Out" : "" %>
                     </td>
                     <td class="cus-col-big"><%= clock_event.event_time.strftime("%Y/%m/%d %H:%M") %></td>
                     <td class="cus-col-sml"><%= link_to 'Edit', edit_clock_event_path(clock_event) %> </td>
