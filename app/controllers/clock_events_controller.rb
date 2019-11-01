@@ -8,14 +8,14 @@ class ClockEventsController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     @clock_event = ClockEvent.new
-    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.id DESC')
+    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.event_time DESC')
   end
 
   # GET /clock_events/1
   # GET /clock_events/1.json
   def show
     @user = User.find(session[:user_id])
-    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.id DESC')
+    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.event_time DESC')
     @clock_event = ClockEvent.new
   end
 
@@ -23,7 +23,7 @@ class ClockEventsController < ApplicationController
   def new
     @user = User.find(session[:user_id])
     @clock_event = @@clock_event_cls
-    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.id DESC')
+    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.event_time DESC')
     @@clock_event_cls = ClockEvent.new
   end
 
@@ -31,7 +31,7 @@ class ClockEventsController < ApplicationController
   def edit
     @clock_event = ClockEvent.find(params[:id])
     @user = User.find(@clock_event.user_id)
-    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.id DESC')
+    @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.event_time DESC')
   end
 
   # POST /clock_events
