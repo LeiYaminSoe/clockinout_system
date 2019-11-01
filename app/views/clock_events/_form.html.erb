@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="container col-md-4 cus-margin">
+    <div class="card">
+      <div class="card-header cus-font">
+        Save Event
+      </div>
+      <div class="card-body">
+        <%= simple_form_for @clock_event do |f| %>
+          <% if @clock_event.errors.any? %>
+            <div id="error_explanation">
+              <ul>
+                <% @clock_event.errors.full_messages.each do |message| %>
+                  <li class="font-error"><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div cliass="col-md-12">
+            <%= f.hidden_field :user_id, :value => @user.id %>
+            <div class="form-group">
+              <label class="col-md-4 control-label">Event Type:</label>
+              <div class="col-md-8">
+                <%= f.select :event_type, options_for_select([["School", "1"], ["Lunch", "2"], ["Personal", "3"]]), {include_blank: false}, {class: "form-control cus-form-font"} %>
+              </div>
+            </div>
+            </br>
+            </br>
+            <div class="form-group">
+              <label class="col-md-4 control-label">Event Action:</label>
+              <div class="col-md-8">
+                <%= f.select :event_action, options_for_select([["Arrival", "1"], ["Departure", "2"]]), {include_blank: false}, {class: "form-control cus-form-font"} %>
+              </div>
+            </div>
+            </br>
+            <div class="form-group">
+              <h5><span style="font-size: 12px; color: lightseagreen; margin-left: 15px;">Please click on Calendar icon to open or close the Calendar!!</span></h5>
+              <label class="col-md-4 control-label">Event Time:</label>
+              <div class="col-md-8">
+                <div class="input-group" data-target-input="nearest">
+                  <%= f.text_field :event_time, id: "event_time", class: "form-control cus-form-font eventtimepicker", :autocomplete => :off, data: { target: '#event_time'} %>
+                  <div class="input-group-append" data-target="#event_time" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+                </div>
+              </div>
+              </br>
+              </br>
+            </div>
+            <div class="form-group">
+              <div class="col-md-4 pull-right">
+                <%= f.submit "Save", class: "form-control cus-form-font btn btn-info" %>
+              </div>
+            </div>
+          </div>
+          <script>
+            $(function () {
+              $('.eventtimepicker').datetimepicker({
+                format: 'YYYY/MM/DD HH:mm'
+              });
+            });
+          </script>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</br>

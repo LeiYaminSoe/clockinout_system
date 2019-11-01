@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark background-lightblue">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <h2 class="text-white">ClockIn-ClockOut System</h2>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <% if @user.username.present? %>
+        <h2 class="sml-text-white">Welcome <%= @user.username %> !! </h2>
+        <h2></h2><%= raw "   ".gsub(/\s/, "&nbsp;") %></h2>
+        <%= link_to 'Logout', users_path, class: "btn btn-light cus-form-font" %>
+      <% else %>
+        <h2 class="sml-text-white">Welcome !!</h2>
+      <% end %>
+    </form>
+  </div>
+</nav>
+</br>

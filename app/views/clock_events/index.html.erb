@@ -1,0 +1,11 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div id="clock_event_form">
+    <%= render 'form', user: @user %>
+  </div>
+  </br>
+  <% if @clock_events.present? %>
+    <div id="clock_event_list_form">
+      <%= render 'list', user: @user %>
+    </div>
+  <% end %>
+</div>
