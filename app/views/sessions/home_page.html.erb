@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<h3>Welcome to HiMaMa ClockIn ClockOut System</h3>
+</br>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Clock Event Tracker</a>
+  </li>
+  <% if current_user.user_role == 1 %>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">User Management</a>
+    </li>
+  <% end %>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <%= link_to 'New Clock Event', new_clock_event_path, :class => "nav-link active" %>
+    <%= render '../clock_events/new' %>
+  </div>
+  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <%= link_to 'Add New User', new_user_path, :class => "nav-link" %>
+  </div>
+</div>

@@ -11,6 +11,16 @@ class ClockEventsController < ApplicationController
     @clock_events = @user.clock_events.page(params[:page]).per(5).order('clock_events.event_time DESC')
   end
 
+  def report
+    @q = ClockEvent.ransack(params[:q])
+    @clk_events = @q.result.page(params[:page]).per(5).order('clock_events.event_time DESC')
+  end
+
+  def search
+    @q = ClockEvent.ransack(params[:q])
+    @clk_events = @q.result.page(params[:page]).per(5).order('clock_events.event_time DESC')
+  end
+
   # GET /clock_events/1
   # GET /clock_events/1.json
   def show

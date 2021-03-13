@@ -1,5 +1,51 @@
 <div class="wrapper wrapper-content animated fadeInRight">
-  <div id="user_form">
-    <%= render 'form', user: @user %>
+  <div class="row">
+    <div class="container col-md-11">
+      <%= link_to 'Add New User', new_user_path %>
+      </br>
+      </br>
+      <div class="card">
+        <div class="card-header cus-font">
+          User List
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">No:</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">User Role</th>
+                    <th scope="col">#</th>
+                    <th scope="col">#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.each_with_index do |user,index| %>
+                    <tr>
+                      <th scope="row"><%= index+1 %></th>
+                      <td class="cus-col-big">
+                        <%= user.username %>
+                      </td>
+                      <td class="cus-col-big"><%= user.email %></td>
+                      <td class="cus-col-big">
+                        <%= user.user_role == 1 ? "Admin" : "User" %>
+                      </td>
+                      <td class="cus-col-sml"><%= link_to 'Edit', edit_user_path(user) %> </td>
+                      <td class="cus-col-sml"><%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete?"} %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <%= paginate @users %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  </br>
+
 </div>

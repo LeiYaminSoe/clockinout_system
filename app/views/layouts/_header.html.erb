@@ -4,21 +4,21 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <%= image_tag asset_path('clk_logo.png'), :class => "style_image" %>
+      <li class="nav-item active col-6">
+        <%= image_tag asset_path('logo.png'), :class => "style_image" %>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active col-3">
         <h2 class="text-white">&nbsp;</h2>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active col-6">
         <h2 class="text-white">ClockIn-ClockOut System</h2>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <% if @user.username.present? %>
-        <h2 class="sml-text-white">Welcome <%= @user.username %> !! </h2>
+      <% if logged_in? %>
+        <h2 class="sml-text-white">Welcome <%= current_user.username %> !! </h2>
         <h2></h2><%= raw "   ".gsub(/\s/, "&nbsp;") %></h2>
-        <%= link_to 'Logout', users_path, class: "btn btn-light cus-form-font" %>
+        <%= link_to 'Logout', sessions_logout_path, class: "btn btn-light cus-form-font" %>
       <% else %>
         <h2 class="sml-text-white">Welcome !!</h2>
       <% end %>

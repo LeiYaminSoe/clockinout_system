@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="container col-md-8 cus-margin">
+    <div class="card">
+      <div class="card-header cus-font">
+        Search
+      </div>
+      <div class="card-body">
+        <div class="col-md-12">
+<%= search_form_for @q, url: search_path do |f| %>
+<div class="form-group">
+  <label class="col-md-4 control-label">Event Time:</label>
+  <div class="col-md-8 mb-3">
+    <%= f.date_field :event_time_gteq, include_blank: true, class: "form-control cus-form-font eventtimepicker",
+    :autocomplete => :off, data: { target: '#event_time'} %>  〜　
+    <%= f.date_field :event_time_lteq, include_blank: true, class: "form-control cus-form-font eventtimepicker",
+    :autocomplete => :off, data: { target: '#event_time'} %>
+  </div>
+</div>
+</br>
+</br>
+<div class="form-group">
+  <label class="col-md-4 control-label">Event Type:</label>
+  <div class="col-md-8 mb-3">
+   <%= f.select :event_type_eq, options_for_select([["School", "1"], ["Lunch", "2"], ["Personal", "3"]]), {include_blank: true}, {class: "form-control cus-form-font"} %>
+  </div>
+</div>
+</br>
+</br>
+<div class="form-group">
+  <label class="col-md-4 control-label">Event Action:</label>
+  <div class="col-md-8 mb-3">
+    <%= f.select :event_action_eq, options_for_select([["Clock-In", "1"], ["Clock-Out", "2"]]), {include_blank: true}, {class: "form-control cus-form-font"} %>
+  </div>
+</div>
+</br>
+</br>
+<div class="form-group">
+  <div class="col-md-4 pull-right">
+    <%= f.submit "Search", class: "form-control cus-form-font btn btn-info" %>
+  </div>
+</div>
+</br>
+</br>
+<% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+</br>
+<script>
+  $(function () {
+    $('.eventtimepicker').datetimepicker({
+      format: 'YYYY/MM/DD HH:mm'
+    });
+  });
+</script>

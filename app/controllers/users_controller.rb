@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
+  skip_before_action :authorized, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    @user = User.new
+    @users = User.all.page(params[:page]).per(5).order(:username)
   end
 
   # GET /users/1
@@ -26,21 +26,25 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @existing_user = User.where(username: @user.username).first
-    if @existing_user.present?
-      session[:user_id] = @existing_user.id
-      redirect_to clock_events_path(user: @existing_user)
-    else
+    #@existing_user = User.where(username: @user.username).first
+    #if @existing_user.present?
+    #  session[:user_id] = @existing_user.id
+    #  redirect_to clock_events_path(user: @existing_user)
+    #else
       respond_to do |format|
         if @user.save
-          session[:user_id] = @user.id
-          format.html {redirect_to clock_events_path(user: @user)}
+          if current_user.present?
+            format.html {redirect_to users_path}
+          else
+            session[:user_id] = @user.id
+            format.html {redirect_to clock_events_path(user: @user)}
+          end
         else
           format.html { render :new }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
-    end
+    #end
   end
 
   # PATCH/PUT /users/1
@@ -48,8 +52,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.html {redirect_to users_path}
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -75,6 +78,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:username, :created_at, :updated_at, :clock_events => [:event_type, :event_action, :event_time, :created_at, :updated_at])
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :user_role, :created_at, :updated_at, :clock_events => [:event_type, :event_action, :event_time, :created_at, :updated_at])
   end
 end

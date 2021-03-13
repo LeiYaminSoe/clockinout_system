@@ -7,17 +7,17 @@
 }
 
 .background-lightblue{
-  background-color: #17a2b8;
+  background-color: #FFFFFF;
 }
 
 .text-white{
-  color: #fff!important;
+  color: #12CDD4 !important;
   font-size: 25px;
   line-height: 58px;
 }
 
 .sml-text-white{
-  color: #fff!important;
+  color: #12CDD4!important;
   font-size: 14px;
 }
 
@@ -48,6 +48,10 @@ label{
   height: calc( 100vh + 50px ) !important;
 }
 
+.sidebar{
+  margin-left: 15%;
+}
+
 .font-error{
   color: red;
 }
@@ -65,6 +69,6 @@ label{
 }
 
 .style_image{
-  width: 100px;
+  width: auto;
   height: 70px;
 }

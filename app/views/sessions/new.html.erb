@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="container col-md-8">
+    <div class="card">
+      <div class="card-header cus-font">
+        Login
+      </div>
+      <div class="card-body">
+        <%= simple_form_for @user, url: sessions_login_path, :html=> { name: 'user_form' } do |f| %>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li class="font-error"><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          </br>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="col-md-4 control-label">Email:</label>
+                <div class="col-md-8">
+                  <%= f.text_field :email, class: "form-control cus-form-font" %>
+                </div>
+              </div>
+              </br>
+              </br>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Password:</label>
+                <div class="col-md-8">
+                  <%= f.password_field :password, class: "form-control cus-form-font" %>
+                </div>
+              </div>
+              </br>
+              </br>
+              <div class="form-group">
+                <div class="col-md-4 pull-right">
+                  <%= f.submit "Login", class: "form-control cus-form-font btn btn-info" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</br>

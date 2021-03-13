@@ -1,0 +1,9 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div id="clock_event_form">
+    <%= render 'search', locals: { f: @q } %>
+  </div>
+  </br>
+  <div id="clock_event_list_form">
+    <%= render partial: 'report_list', locals: { f: @clk_events }%>
+  </div>
+</div>

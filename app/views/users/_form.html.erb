@@ -1,11 +1,16 @@
 <div class="row">
-  <div class="container col-md-4">
+  <div class="container col-md-8">
     <div class="card">
       <div class="card-header cus-font">
-        Login
+        <% if params[:from_action].present? && params[:from_action] == "signup" %>
+          Login
+        <% else %>
+          User Info
+        <% end %>
       </div>
       <div class="card-body">
         <%= simple_form_for @user, url: users_path, :html=> { name: 'user_form' } do |f| %>
+          <%= hidden_field_tag :id, @user.id %>
           <% if user.errors.any? %>
             <div id="error_explanation">
               <ul>
@@ -27,8 +32,44 @@
               </br>
               </br>
               <div class="form-group">
+                <label class="col-md-4 control-label">Email:</label>
+                <div class="col-md-8">
+                  <%= f.text_field :email, class: "form-control cus-form-font" %>
+                </div>
+              </div>
+              </br>
+              </br>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Password:</label>
+                <div class="col-md-8">
+                  <%= f.password_field :password, class: "form-control cus-form-font" %>
+                </div>
+              </div>
+              </br>
+              </br>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Password Comfirmation:</label>
+                <div class="col-md-8">
+                  <%= f.password_field :password_confirmation, class: "form-control cus-form-font" %>
+                </div>
+              </div>
+              </br>
+              </br>
+              <div class="form-group">
+                <label class="col-md-4 control-label">User Role:</label>
+                <div class="col-md-8">
+                  <%= f.select :user_role, options_for_select([["Admin", "1"], ["User", "2"]], selected: @user.user_role), {include_blank: false}, {class: "form-control cus-form-font"} %>
+                </div>
+              </div>
+              </br>
+              </br>
+              <div class="form-group">
                 <div class="col-md-4 pull-right">
-                  <%= f.submit "Login", class: "form-control cus-form-font btn btn-info" %>
+                  <% if params[:from_action].present? && params[:from_action] == "signup" %>
+                    <%= f.submit "Sign Up", class: "form-control cus-form-font btn btn-info" %>
+                  <% else %>
+                    <%= f.submit "Save", class: "form-control cus-form-font btn btn-info" %>
+                  <% end %>
                 </div>
               </div>
             </div>
